@@ -43,9 +43,9 @@ class Clicker
   private
 
   def update_level
-    if user_info[CLICKS_KEY] % CLICKS_TO_REACH_NEW_LEVEL == 0
-      user_info[LEVEL_KEY] += 1
-    end
+    return unless user_info[CLICKS_KEY] % CLICKS_TO_REACH_NEW_LEVEL == 0
+
+    user_info[LEVEL_KEY] += 1
   end
 
   def add_points
