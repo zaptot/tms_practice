@@ -1,0 +1,9 @@
+ru:
+  devise:
+    sessions:
+      user:
+        signed_out: Вы вышли из аккаунта
+        signed_in: Вы вошли в свой аккаунт
+  books: Книги
+  locale:
+    change: Сменить язык

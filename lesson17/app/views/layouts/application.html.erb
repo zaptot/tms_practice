@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lesson17</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div>
+      <% if user_signed_in? %>
+        <%= current_user.email %>
+        <%= link_to "Log out", destroy_user_session_path, data: { 'turbo-method': :delete } %>
+      <% else %>
+        <%= link_to "Log in", new_user_session_path %>
+      <% end %>
+    </div>
+
+    <% if notice.present? %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+
+
+    <footer>
+      <% if user_signed_in? %>
+        <%= I18n.t('locale.change') %>
+        <% User::AVAILABLE_LOCALES.each do |locale| %>
+          <% next if locale == I18n.locale.to_s %>
+
+          <%= button_to locale, change_locale_path, params: { locale: locale }, method: :patch %>
+        <% end %>
+      <% end %>
+    </footer>
+  </body>
+</html>
