@@ -9,7 +9,7 @@ module Currencies
     def self.call(from:, to:, amount:)
       rate = GetRate.call(from: from, to: to)
 
-      { from: from, to: to, amount_from: amount, amount_to: rate.to_f * amount.to_f}
+      { from: from, to: to, amount_from: amount, amount_to: rate.to_f * amount.to_f }
     end
   end
 end

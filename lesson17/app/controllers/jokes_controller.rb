@@ -4,7 +4,7 @@ class JokesController < ApplicationController
   caches_action :random
 
   def random
-    render json: helpers.random_joke
+    render json: Jokes::Random.call.to_json
   end
 
   private
