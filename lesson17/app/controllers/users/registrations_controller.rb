@@ -5,7 +5,7 @@ module Users
     def create
       super do |user|
         if user.persisted?
-          Users::Confirmation::SendMail.call(user.id)
+          Users::Confirmation::SendMailWorker.perform_async(user.id)
         end
       end
     end

@@ -3,6 +3,7 @@ module Users
     class SendMail
       class << self
         def call(user_id)
+          sleep(30)
           user = User.find(user_id)
           token = generate_token(user_id)
 

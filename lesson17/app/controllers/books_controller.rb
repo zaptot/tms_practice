@@ -1,8 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[edit create update new destroy]
-
-  # GET /books or /books.json
+# GET /books or /books.json
   def index
     @books = Book.all
   end
@@ -18,11 +17,12 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    authorize @book
   end
 
   # POST /books or /books.json
   def create
-    @book = Book.new(book_params)
+    @book = Book.new(book_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @book.save

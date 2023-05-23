@@ -1,4 +1,10 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+
+  rescue_from Pundit::NotAuthorizedError do |_e|
+    render json: { message: 'No access' }, status: 403
+  end
+
   before_action :set_locale
 
   private

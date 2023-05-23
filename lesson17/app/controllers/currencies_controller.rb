@@ -6,6 +6,8 @@ class CurrenciesController < ApplicationController
     render json: { errors: e.message }, status: :bad_request
   end
 
+  caches_action :index
+
   def index
     render json: Currencies::AvailableCurrencies.call
   end
